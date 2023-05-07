@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { PlusIcon } from "components/ui/SvgIcons.tsx";
-import MainContainer from "components/wrappers/MainContainer.tsx";
+import MainContainer from "components/wrappers/MainContainer";
 import PageTitle from "components/ui/PageTitle.tsx";
 import TextInput from "components/ui/TextInput.tsx";
 import Textarea from "components/ui/Textarea.tsx";
 import Button from "components/ui/Button.tsx";
 import TasksContainer from "components/home/TasksContainer.tsx";
-import PageTransition from "components/wrappers/PageTransition.tsx";
+import PageTransition from "components/wrappers/PageTransition";
 
 export default function Home() {
     const [task, setTask] = useState("");
