@@ -1,3 +1,5 @@
+import PageTransition from "components/wrappers/PageTransition.tsx";
+
 export default function NotFound() {
-    return <div>NotFound</div>;
+    return <PageTransition>NotFound</PageTransition>;
 }

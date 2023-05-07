@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { Status } from "components/home/TaskStatus.tsx";
-import MainContainer from "components/ui/MainContainer.tsx";
+import MainContainer from "components/wrappers/MainContainer.tsx";
 import TaskItem from "components/home/TaskItem.tsx";
 import cs from "classnames";
 
