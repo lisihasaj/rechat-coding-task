@@ -1,4 +1,4 @@
-import MainContainer from "components/ui/MainContainer.tsx";
+import MainContainer from "components/wrappers/MainContainer.tsx";
 import { PATHS } from "router/paths.ts";
 import { Link, useLocation } from "react-router-dom";
 
