@@ -9,7 +9,6 @@ import AppLayout from "../layouts/AppLayout.tsx";
 // Pages
 import NotFound from "pages/NotFound.tsx";
 import Home from "pages/Home.tsx";
-import Add from "pages/Add.tsx";
 import Edit from "pages/Edit.tsx";
 
 const appRoutes: RouteObject[] = [
@@ -18,14 +17,6 @@ const appRoutes: RouteObject[] = [
         element: (
             <AppLayout>
                 <Home />
-            </AppLayout>
-        ),
-    },
-    {
-        path: PATHS().add,
-        element: (
-            <AppLayout>
-                <Add />
             </AppLayout>
         ),
     },

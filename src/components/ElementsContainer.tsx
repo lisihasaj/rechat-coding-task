@@ -7,7 +7,7 @@ interface Props extends PropsWithChildren {
 
 export default function ElementsContainer(props: Props) {
     return (
-        <div className={cs("w-full flex px-[3rem]", props.className)}>
+        <div className={cs("relative w-full flex px-[3rem]", props.className)}>
             {props.children}
         </div>
     );
