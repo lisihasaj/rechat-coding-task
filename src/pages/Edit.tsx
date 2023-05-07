@@ -1,4 +1,4 @@
-import MainContainer from "components/wrappers/MainContainer.tsx";
+import MainContainer from "components/wrappers/MainContainer";
 import PageTitle from "components/ui/PageTitle.tsx";
 import TextInput from "components/ui/TextInput.tsx";
 import { useState } from "react";
@@ -6,7 +6,7 @@ import Textarea from "components/ui/Textarea.tsx";
 import SelectInput from "components/ui/SelectInput.tsx";
 import Button from "components/ui/Button.tsx";
 import { EditIcon } from "components/ui/SvgIcons.tsx";
-import PageTransition from "components/wrappers/PageTransition.tsx";
+import PageTransition from "components/wrappers/PageTransition";
 
 export default function Edit() {
     const [title, setTitle] = useState("");
