@@ -30,11 +30,7 @@ const appRoutes: RouteObject[] = [
     },
     {
         path: PATHS().notFound,
-        element: (
-            <AppLayout>
-                <NotFound />
-            </AppLayout>
-        ),
+        element: <NotFound />,
     },
 ];
 

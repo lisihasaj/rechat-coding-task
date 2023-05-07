@@ -27,7 +27,7 @@ export default function Home() {
                         placeholder="Description"
                         rows={5}
                     />
-                    <Button type="submit" disabled>
+                    <Button type="submit" variant="fill">
                         <PlusIcon className="h-6 w-6" />
                         Add
                     </Button>
