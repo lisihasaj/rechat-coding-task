@@ -1,15 +1,15 @@
 import { RouteObject } from "react-router-dom";
 import { useRoutes } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { PATHS } from "router/paths.ts";
+import { PATHS } from "router/paths";
 
 // Layouts
-import AppLayout from "../layouts/AppLayout.tsx";
+import AppLayout from "layouts/AppLayout";
 
 // Pages
-import NotFound from "pages/NotFound.tsx";
-import Home from "pages/Home.tsx";
-import Edit from "pages/Edit.tsx";
+import NotFound from "pages/NotFound";
+import Home from "pages/Home";
+import Edit from "pages/Edit";
 
 const appRoutes: RouteObject[] = [
     {

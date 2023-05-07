@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import cs from "classnames";
-import Header from "components/Header.tsx";
+import Header from "components/Header";
 
 export default function AppLayout(props: PropsWithChildren) {
     return (
@@ -9,7 +9,7 @@ export default function AppLayout(props: PropsWithChildren) {
                 "1024:w-[70%]",
                 "840:w-[80%]",
                 "620:w-[90%]",
-                "w-full min-h-screen flex flex-col",
+                "relative w-full min-h-screen flex flex-col items-center",
             )}
         >
             <Header />

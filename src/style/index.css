@@ -22,14 +22,14 @@
   height: 0.2rem;
 }
 
-*::-webkit-resizer {
-  background: transparent !important;
-  opacity: 0;
-}
-
 *::-webkit-scrollbar-thumb {
   background-color: #c4c4c4;
   border-radius: 0.2rem;
+}
+
+*::-webkit-resizer {
+  background: transparent !important;
+  opacity: 0;
 }
 
 body {
@@ -40,6 +40,9 @@ body {
 #root {
   position: relative;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 a {
@@ -51,7 +54,12 @@ li,
 button,
 span,
 svg,
-input {
+input,
+textarea {
   transition: all 0.1s ease-in-out !important;
   outline: none;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
 }
