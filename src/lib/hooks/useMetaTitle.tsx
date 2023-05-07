@@ -5,7 +5,7 @@ import { StringExtension as String } from "lib/extensions/string.extension";
 export function useMetaTitle() {
     const { pathname } = useLocation();
 
-    const mainTitle = "Xpdite";
+    const mainTitle = "Rechat task";
     const titleHyphen = " - ";
     const pageTitle = String.capitalize(
         pathname.split("/")[1].replace("-", " "),

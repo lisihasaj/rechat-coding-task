@@ -1,9 +1,12 @@
+import { useMetaTitle } from "lib/hooks/useMetaTitle.tsx";
+import Routes from "router/Routes.tsx";
+
 export default function App() {
-  return (
-      <div className="min-h-screen flex justify-center items-center">
-          <h1 className="text-3xl font-bold text-blue-600">
-              Rechat task
-          </h1>
-      </div>
-  )
+    useMetaTitle();
+
+    return (
+        <>
+            <Routes />
+        </>
+    );
 }
