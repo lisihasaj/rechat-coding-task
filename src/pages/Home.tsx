@@ -1,18 +1,19 @@
 import { useState } from "react";
-import ElementsContainer from "components/ElementsContainer.tsx";
-import PageTitle from "components/PageTitle.tsx";
-import TextInput from "components/TextInput.tsx";
-import Textarea from "components/Textarea.tsx";
-import Button from "components/Button.tsx";
-import { Plus } from "components/SvgIcons.tsx";
+import { PlusIcon } from "components/ui/SvgIcons.tsx";
+import MainContainer from "components/ui/MainContainer.tsx";
+import PageTitle from "components/ui/PageTitle.tsx";
+import TextInput from "components/ui/TextInput.tsx";
+import Textarea from "components/ui/Textarea.tsx";
+import Button from "components/ui/Button.tsx";
+import TasksContainer from "components/home/TasksContainer.tsx";
 
 export default function Home() {
     const [task, setTask] = useState("");
     const [description, setDescription] = useState("");
 
     return (
-        <div className="relative w-full min-h-screen bg-white">
-            <ElementsContainer className="flex-col">
+        <div className="relative w-full min-h-screen bg-white flex flex-col gap-10">
+            <MainContainer className="flex-col">
                 <PageTitle title="Add a new task" />
                 <div className="w-full flex flex-col gap-2">
                     <TextInput
@@ -26,12 +27,13 @@ export default function Home() {
                         placeholder="Description"
                         rows={5}
                     />
-                    <Button type="submit">
-                        <Plus />
+                    <Button type="submit" disabled>
+                        <PlusIcon className="h-6 w-6" />
                         Add
                     </Button>
                 </div>
-            </ElementsContainer>
+            </MainContainer>
+            <TasksContainer />
         </div>
     );
 }

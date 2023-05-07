@@ -14,6 +14,7 @@ export default function Button(props: Props) {
             type={props.type}
             className={cs(
                 "w-full flex flex-row justify-center items-center bg-brand-dark px-[1rem] py-[.7rem] rounded-md text-white gap-2",
+                props.disabled && "cursor-not-allowed text-gray-100",
             )}
             onClick={props.onClick}
             disabled={props.disabled}

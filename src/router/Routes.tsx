@@ -21,7 +21,7 @@ const appRoutes: RouteObject[] = [
         ),
     },
     {
-        path: PATHS().edit,
+        path: PATHS(":taskId").edit,
         element: (
             <AppLayout>
                 <Edit />

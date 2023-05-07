@@ -1,9 +1,9 @@
-import ElementsContainer from "components/ElementsContainer.tsx";
+import MainContainer from "components/ui/MainContainer.tsx";
 
 export default function Header() {
     return (
-        <ElementsContainer className="bg-brand-dark py-[1rem]">
+        <MainContainer className="bg-brand-dark py-[1rem]">
             <span className="text-white text-xl">Task Management</span>
-        </ElementsContainer>
+        </MainContainer>
     );
 }

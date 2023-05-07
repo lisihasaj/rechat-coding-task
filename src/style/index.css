@@ -2,15 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (max-width: 1440px) {
-  html {
-    font-size: 14px;
-  }
-}
-
 * {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  scrollbar-width: thin;
+  /*scrollbar-width: thin;*/
   scrollbar-color: transparent transparent;
   margin: 0;
   padding: 0;
@@ -18,13 +12,13 @@
 
 *::-webkit-scrollbar,
 *::-webkit-scrollbar-track {
-  width: 0.2rem;
-  height: 0.2rem;
+  width: 5px;
+  height: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #c4c4c4;
-  border-radius: 0.2rem;
+  background-color: #383838;
+  border-radius: 5px;
 }
 
 *::-webkit-resizer {
