@@ -25,7 +25,8 @@
       "router/*": ["src/router/*"],
       "components/*": ["src/components/*"],
       "style/*": ["src/style/*"],
-      "lib/*": ["src/lib/*"]
+      "lib/*": ["src/lib/*"],
+      "layouts/*": ["src/layouts/*"],
     }
   },
   "include": ["src"],

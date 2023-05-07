@@ -1,16 +1,15 @@
 import { RouteObject } from "react-router-dom";
 import { useRoutes } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { PATHS } from "router/paths.ts";
+import { PATHS } from "router/paths";
 
 // Layouts
-import AppLayout from "../layouts/AppLayout.tsx";
+import AppLayout from "layouts/AppLayout";
 
 // Pages
-import NotFound from "pages/NotFound.tsx";
-import Home from "pages/Home.tsx";
-import Add from "pages/Add.tsx";
-import Edit from "pages/Edit.tsx";
+import NotFound from "pages/NotFound";
+import Home from "pages/Home";
+import Edit from "pages/Edit";
 
 const appRoutes: RouteObject[] = [
     {
@@ -22,15 +21,7 @@ const appRoutes: RouteObject[] = [
         ),
     },
     {
-        path: PATHS().add,
-        element: (
-            <AppLayout>
-                <Add />
-            </AppLayout>
-        ),
-    },
-    {
-        path: PATHS().edit,
+        path: PATHS(":taskId").edit,
         element: (
             <AppLayout>
                 <Edit />
@@ -39,11 +30,7 @@ const appRoutes: RouteObject[] = [
     },
     {
         path: PATHS().notFound,
-        element: (
-            <AppLayout>
-                <NotFound />
-            </AppLayout>
-        ),
+        element: <NotFound />,
     },
 ];
 
