@@ -1,16 +1,27 @@
+import { ChangeEvent } from "react";
 import cs from "classnames";
 import { StringExtension as String } from "lib/extensions/string.extension.ts";
+import { useFormContext } from "lib/context/FormContext.tsx";
+import InputErrorElement from "components/ui/InputErrorElement.tsx";
 
 interface Props {
     className?: string;
-    value: string;
-    onChange: (value: string) => void;
+    name: string;
     placeholder?: string;
     rows?: number;
     disabled?: boolean;
 }
 
 export default function Textarea(props: Props) {
+    const { values, setValues, errors, clearError } = useFormContext();
+
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        clearError(props.name);
+        const value = String.capitalize(e.target.value);
+        e.target.value = value;
+        setValues(props.name, value);
+    };
+
     return (
         <div
             className={cs(
@@ -18,20 +29,31 @@ export default function Textarea(props: Props) {
                 props.className,
             )}
         >
-            <div className="w-full border-b-[2px] border-gray-300 group-focus-within:border-brand-dark transition-colors duration-100 ease-in-out z-0">
+            <div
+                className={cs(
+                    "w-full border-b-[2px] transition-colors duration-100 ease-in-out z-0",
+                    errors[props.name]
+                        ? "border-red-500"
+                        : "border-gray-300 group-focus-within:border-brand-dark",
+                )}
+            >
                 <textarea
-                    value={props.value}
+                    value={values[props.name]}
                     rows={props.rows ? props.rows : 4}
                     placeholder={props.placeholder}
                     disabled={props.disabled}
                     autoComplete={props.disabled ? "off" : "on"}
                     autoCorrect="on"
-                    className={cs("w-full bg-transparent text-base p-[1rem]")}
-                    onChange={(e) => {
-                        const value = String.capitalize(e.target.value);
-                        e.target.value = value;
-                        props.onChange(value);
-                    }}
+                    className={cs(
+                        "w-full bg-transparent text-base p-[1rem]",
+                        errors[props.name]
+                            ? "text-red-500"
+                            : "text-gray-500 group-focus-within:text-black",
+                    )}
+                    onChange={handleChange}
+                />
+                <InputErrorElement
+                    hasError={typeof errors[props.name] !== "undefined"}
                 />
             </div>
         </div>

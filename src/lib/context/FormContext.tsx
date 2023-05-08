@@ -7,59 +7,65 @@ import {
 
 // Initial state props
 interface FormContextState {
-    title: string;
-    description: string;
-    status: string | undefined;
+    values: { [key: string]: string | undefined };
+    errors: { [key: string]: string | undefined };
 }
-//
+
 // Context initial state
 const initialState: FormContextState = {
-    title: "",
-    description: "",
-    status: undefined,
+    values: {},
+    errors: {},
 };
 
 // Reducer props
 type FormContextActionType =
-    | "set_multiple"
-    | "set_title"
-    | "set_description"
-    | "set_status";
-//
-type SingleActionPayload = string | undefined;
-type FormContextActionPayload =
-    | SingleActionPayload
-    | { [key: string]: SingleActionPayload };
-//
+    | "set_field_value"
+    | "set_field_error"
+    | "reset_fields"
+    | "reset_errors"
+    | "reset_multiple";
+type FormContextActionPayload = { [key: string]: string | undefined };
 interface FormContextActions {
     type: FormContextActionType;
     payload: FormContextActionPayload;
 }
-//
-// Context actions reducer
+
+// The Reducer
 const reducer = (state: FormContextState, action: FormContextActions) => {
     const { type, payload } = action;
 
     switch (type) {
-        case "set_title":
+        case "set_field_value":
             return {
                 ...state,
-                title: payload as string,
+                values: {
+                    ...state.values,
+                    ...payload,
+                } as { [key: string]: string | undefined },
             };
-        case "set_description":
+        case "set_field_error":
             return {
                 ...state,
-                description: payload as string,
+                errors: {
+                    ...state.errors,
+                    ...payload,
+                },
             };
-        case "set_status":
+        case "reset_fields":
             return {
                 ...state,
-                status: payload as string | undefined,
+                values: {},
             };
-        case "set_multiple":
+        case "reset_errors":
             return {
                 ...state,
-                ...(payload as { [key: string]: SingleActionPayload }),
+                errors: {},
+            };
+        case "reset_multiple":
+            return {
+                ...state,
+                values: {},
+                errors: {},
             };
         default:
             return { ...state };
@@ -68,62 +74,90 @@ const reducer = (state: FormContextState, action: FormContextActions) => {
 
 // Context props
 interface FormContextProps {
-    title: string;
-    description: string;
-    status: string | undefined;
-    setTitle: (value: string) => void;
-    setDescription: (value: string) => void;
-    setStatus: (value: string | undefined) => void;
+    values: { [key: string]: string | undefined };
+    setValues: (key: string, value: string) => void;
+    isDirty: boolean;
+    resetFields: () => void;
+    handleSubmit: (fields: string[]) => void;
+    errors: { [key: string]: string | undefined };
+    clearError: (field: string) => void;
 }
-//
+
 // Context
-const TableContext = createContext<FormContextProps>({
-    title: "",
-    description: "",
-    status: undefined,
-    setTitle() {},
-    setDescription() {},
-    setStatus() {},
+const FormContext = createContext<FormContextProps>({
+    values: {},
+    setValues() {},
+    isDirty: false,
+    resetFields() {},
+    handleSubmit() {},
+    errors: {},
+    clearError() {},
 });
 
 // Context provider
 export function FormContextProvider(props: PropsWithChildren) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    // Handle title change
-    const setTitle = (value: string) => {
-        dispatch({ type: "set_title", payload: value });
+    // Handle field value change
+    const setValues = (key: string, value: string) => {
+        dispatch({ type: "set_field_value", payload: { [key]: value } });
     };
 
-    // Handle description change
-    const setDescription = (value: string) => {
-        dispatch({ type: "set_description", payload: value });
+    // Check if values are empty
+    const isDirty = Object.values(state.values).some((value) => value !== "");
+
+    // Reset fields
+    const resetFields = () => {
+        dispatch({ type: "reset_multiple", payload: {} });
     };
 
-    // Handle status change
-    const setStatus = (value: string | undefined) => {
-        dispatch({ type: "set_status", payload: value });
+    // Handle submit
+    const handleSubmit = (fields: string[]) => {
+        const emptyFields = fields.filter(
+            (field) =>
+                state.values[field] === "" || state.values[field] === undefined,
+        );
+
+        // Check if all fields have values
+        if (emptyFields.length > 0) {
+            const errors = emptyFields.reduce((obj, field) => {
+                return {
+                    ...obj,
+                    [field]: "This field is required",
+                };
+            }, {} as { [key: string]: string | undefined });
+
+            dispatch({ type: "set_field_error", payload: errors });
+        } else {
+            console.log(state.values);
+        }
+    };
+
+    // Clear errors by field name
+    const clearError = (field: string) => {
+        dispatch({ type: "set_field_error", payload: { [field]: undefined } });
     };
 
     return (
-        <TableContext.Provider
+        <FormContext.Provider
             value={{
-                title: state.title,
-                setTitle,
-                description: state.description,
-                setDescription,
-                status: state.status,
-                setStatus,
+                values: state.values,
+                errors: state.errors,
+                setValues,
+                isDirty,
+                resetFields,
+                handleSubmit,
+                clearError,
             }}
         >
             {props.children}
-        </TableContext.Provider>
+        </FormContext.Provider>
     );
 }
 
 // Context consumer hook
 export function useFormContext() {
-    const context = useContext(TableContext);
+    const context = useContext(FormContext);
     if (typeof context === "undefined")
         throw new Error(
             "useFormContext() cannot be used outside <FormContextProvider></FormContextProvider>",
