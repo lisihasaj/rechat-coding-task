@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import cs from "classnames";
 import { useOutsideClick } from "lib/hooks/useOutsideClick.tsx";
+import { useFormContext } from "lib/context/FormContext.tsx";
+import InputErrorElement from "components/ui/InputErrorElement.tsx";
 
 interface Props {
     className?: string;
-    value: string;
-    onClick: (value: string) => void;
+    name: string;
     placeholder?: string;
     disabled?: boolean;
     options?: {
@@ -17,11 +18,13 @@ interface Props {
 export default function SelectInput(props: Props) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement | null>(null);
+    const { values, setValues, errors, clearError } = useFormContext();
 
-    const hasValue = typeof props.value !== "undefined" && props.value !== "";
+    const hasValue = values[props.name] !== undefined;
 
     const handleSelect = (value: string) => {
-        props.onClick(value);
+        clearError(props.name);
+        setValues(props.name, value);
         setIsOpen(false);
     };
 
@@ -39,15 +42,29 @@ export default function SelectInput(props: Props) {
                 type="button"
                 disabled={props.disabled}
                 className={cs(
-                    "w-full p-[1rem] bg-primary rounded-md text-left z-0",
-                    hasValue ? "text-black" : "text-gray-500",
+                    "w-full h-[3.4rem] bg-primary rounded-md z-0 overflow-hidden",
                     isOpen && "absolute top-0 left-0",
                 )}
                 onClick={() => setIsOpen(true)}
             >
-                {hasValue
-                    ? props.options?.find((o) => o.value === props.value)?.label
-                    : props.placeholder}
+                <div
+                    className={cs(
+                        "w-full h-full p-[1rem] text-left border-b-[2px] whitespace-nowrap",
+                        hasValue ? "text-black" : "text-gray-500",
+                        errors[props.name]
+                            ? "border-red-500"
+                            : "border-gray-300",
+                    )}
+                >
+                    {hasValue
+                        ? props.options?.find(
+                              (o) => o.value === values[props.name],
+                          )?.label
+                        : props.placeholder}
+                </div>
+                <InputErrorElement
+                    hasError={typeof errors[props.name] !== "undefined"}
+                />
             </button>
             {isOpen && (
                 <ul className="w-full h-full bg-primary rounded-md shadow-md z-10 py-[0.5rem]">
@@ -58,7 +75,7 @@ export default function SelectInput(props: Props) {
                                 onClick={() => handleSelect(option.value)}
                                 className={cs(
                                     "w-full px-[1rem] py-[0.5rem] text-base text-gray-500 hover:text-brand-dark",
-                                    option.value === props.value &&
+                                    option.value === values[props.name] &&
                                         "text-brand-dark",
                                 )}
                             >
