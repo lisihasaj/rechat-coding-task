@@ -18,10 +18,12 @@ export default function Form(props: Props) {
     const { isDirty, resetFields, addTask, editTask } = useTasksContext();
     const { taskId } = useParams();
 
+    // Get current status of the task
     const currentStatus = StorageExtension.get(TASKS)?.find(
         (t: Task) => t.id === taskId,
     )?.status;
 
+    // Status options with disable/enable logic
     const statusOptions = [
         {
             value: STATUS_TYPES.Todo,

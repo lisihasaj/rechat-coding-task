@@ -1,4 +1,20 @@
 # Rechat frontend coding task
+
+## How to run
+1. Clone repository
+2. Run `pnpm install` or `npm install`
+3. Run `pnpm start` or `npm start`
+4. Open `http://localhost:3000/` in browser
+5. Run `pnpm test` or `npm test` for running tests
+6. Run `pnpm run build` or `npm run build` for building project
+
+This description contains two parts:
+1. Task description with user stories
+2. Assignment documentation
+
+_______________________________________________________________________________
+
+# 1. Rechat frontend coding task
 The goal is to implement an application to manage working tasks. See the __[user stories](#user-stories)__ for the application details to be implemented.
 
 Clone this repository and create a [git bundle](https://git-scm.com/docs/git-bundle) and send it to us when you finished the task. One of the most important topics we want to see, is how you commit your progress. This does not mean every commit has to be perfect.
@@ -44,3 +60,50 @@ So for example:
 2. https://ibb.co/cX7bp6J
 3. https://ibb.co/YNfRbZc
 4. https://ibb.co/fChqF46
+
+______________________
+
+# 2. Assignment Documentation
+
+### Application structure (src folder):
+
+App is developed with functional components using new React features, always aiming code reusability and code readability.
+
+```bash
+├── components
+│   ├── home
+│   │   ├── {Home page specific components}
+│   ├── ui
+│   │   ├── {UI shared components}
+│   ├── wrappers
+│   │   ├── {Wrappers for margin, animations and functionality}
+│   ├── Form.tsx
+│   ├── Header.tsx
+├── layouts
+│   ├── {App layout for pages}
+├── lib
+│   ├── context
+│   │   ├── {Contexts for global state management}
+│   ├── hooks
+│   │   ├── {Custom hooks}
+│   ├── extensions
+│   │   ├── {Extensions for gruping helper functions}
+│   ├── constants.ts {Constants for shared references}
+├── pages
+├── router
+├── style
+├── App.tsx
+├── main.tsx
+```
+
+### State management
+For state management of managing inputs, their values and submitting is used Context API. For managing tasks and their statuses is used useReducer hook.
+
+### Styling
+For styling is used tailwind with classnames library for easier classnames management.
+
+### Data fetching and storage
+For data storing and data fetching client local storage has been configured and used. NOTE: This is not production ready solution, but for this task it is a sufficient solution to demonstrate the frontend functionality.
+
+### Testing
+For testing is used React Testing Library with Jest. Tests are written for all components and hooks.
