@@ -7,7 +7,7 @@ import SelectInput from "components/ui/SelectInput";
 import { useParams } from "react-router-dom";
 import { STATUS_TYPES, TASKS } from "lib/constants";
 import { StorageExtension } from "lib/extensions/storage.extension.ts";
-import { Task } from "components/home/TaskItem.tsx";
+import { Task } from "components/home/TaskItem";
 
 interface Props {
     textareaRows?: number;

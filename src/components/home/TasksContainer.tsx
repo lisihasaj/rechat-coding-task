@@ -4,7 +4,7 @@ import TaskItem from "components/home/TaskItem";
 import cs from "classnames";
 import { Task } from "components/home/TaskItem";
 import { useTasksContext } from "lib/context/TasksContext";
-import { useMediaQuery } from "lib/hooks/useMediaQuery.tsx";
+import { useMediaQuery } from "lib/hooks/useMediaQuery";
 
 export default function TasksContainer() {
     const { tasks } = useTasksContext();
