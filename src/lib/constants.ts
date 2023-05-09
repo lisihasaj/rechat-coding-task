@@ -1,4 +1,3 @@
-// Browser storage vars
 export const TASKS = "tasks";
 
 export const STATUS_TYPES = {

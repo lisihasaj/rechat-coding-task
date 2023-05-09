@@ -11,6 +11,7 @@ import { Task } from "components/home/TaskItem";
 import { useParams } from "react-router-dom";
 import { StorageExtension as Storage } from "lib/extensions/storage.extension";
 import { ArrayExtension as Array } from "lib/extensions/array.extension";
+import { toast } from "react-toastify";
 
 type Obj = { [key: string]: string | undefined } | {};
 
@@ -185,6 +186,7 @@ export function TasksContextProvider(props: PropsWithChildren) {
                     values: {},
                 },
             });
+            toast.success("Task added successfully");
         }
     };
 
@@ -207,6 +209,7 @@ export function TasksContextProvider(props: PropsWithChildren) {
                     tasks: updatedTasks,
                 },
             });
+            toast.success("Task updated successfully");
         }
     };
 
@@ -221,6 +224,7 @@ export function TasksContextProvider(props: PropsWithChildren) {
                 tasks: filteredTasks,
             },
         });
+        toast.success("Task deleted successfully");
     };
 
     // Clear errors by field name
