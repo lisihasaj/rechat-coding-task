@@ -1,9 +1,11 @@
 import { EditIcon, PlusIcon } from "components/ui/SvgIcons.tsx";
-import { useFormContext } from "lib/context/FormContext.tsx";
+import { useTasksContext } from "lib/context/TasksContext.tsx";
 import TextInput from "components/ui/TextInput.tsx";
 import Textarea from "components/ui/Textarea.tsx";
 import Button from "components/ui/Button.tsx";
 import SelectInput from "components/ui/SelectInput.tsx";
+import { useParams } from "react-router-dom";
+import { STATUS_TYPES } from "lib/constants.ts";
 
 interface Props {
     textareaRows?: number;
@@ -11,14 +13,15 @@ interface Props {
 }
 
 export default function Form(props: Props) {
-    const { isDirty, resetFields, handleSubmit } = useFormContext();
+    const { isDirty, resetFields, addTask, editTask } = useTasksContext();
+    const { taskId } = useParams();
 
     const statusOptions = [
-        { value: "Todo", label: "Todo" },
-        { value: "InProgress", label: "In Progress" },
-        { value: "Blocked", label: "Blocked" },
-        { value: "InQA", label: "In QA" },
-        { value: "Done", label: "Done" },
+        { value: STATUS_TYPES.Todo, label: STATUS_TYPES.Todo },
+        { value: STATUS_TYPES.InProgress, label: STATUS_TYPES.InProgress },
+        { value: STATUS_TYPES.Blocked, label: STATUS_TYPES.Blocked },
+        { value: STATUS_TYPES.InQA, label: STATUS_TYPES.InQA },
+        { value: STATUS_TYPES.Done, label: STATUS_TYPES.Done },
     ];
 
     return (
@@ -42,7 +45,10 @@ export default function Form(props: Props) {
                             variant="fill"
                             disabled={!isDirty}
                             onClick={() =>
-                                handleSubmit(["title", "description", "status"])
+                                editTask(
+                                    ["title", "description", "status"],
+                                    taskId!,
+                                )
                             }
                         >
                             <EditIcon className="w-5 h-5" />
@@ -63,7 +69,7 @@ export default function Form(props: Props) {
                     type="button"
                     variant="fill"
                     disabled={!isDirty}
-                    onClick={() => handleSubmit(["title", "description"])}
+                    onClick={() => addTask(["title", "description"])}
                 >
                     <PlusIcon className="h-6 w-6" />
                     Add

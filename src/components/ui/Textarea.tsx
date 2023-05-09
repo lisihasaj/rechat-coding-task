@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import cs from "classnames";
 import { StringExtension as String } from "lib/extensions/string.extension.ts";
-import { useFormContext } from "lib/context/FormContext.tsx";
+import { useTasksContext } from "lib/context/TasksContext.tsx";
 import InputErrorElement from "components/ui/InputErrorElement.tsx";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function Textarea(props: Props) {
-    const { values, setValues, errors, clearError } = useFormContext();
+    const { values, setValues, errors, clearError } = useTasksContext();
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         clearError(props.name);
@@ -38,7 +38,7 @@ export default function Textarea(props: Props) {
                 )}
             >
                 <textarea
-                    value={values[props.name]}
+                    value={values[props.name] ?? ""}
                     rows={props.rows ? props.rows : 4}
                     placeholder={props.placeholder}
                     disabled={props.disabled}

@@ -1,2 +1,10 @@
 // Browser storage vars
-export const SESSION_SLUG = "sess";
+export const TASKS = "tasks";
+
+export const STATUS_TYPES = {
+    Todo: "Todo",
+    InProgress: "In Progress",
+    Done: "Done",
+    Blocked: "Blocked",
+    InQA: "InQA",
+};
