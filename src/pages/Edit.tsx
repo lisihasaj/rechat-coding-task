@@ -4,11 +4,12 @@ import PageTransition from "components/wrappers/PageTransition";
 import Form from "components/Form";
 import { TasksContextProvider } from "lib/context/TasksContext";
 import { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { StorageExtension } from "lib/extensions/storage.extension";
 import { TASKS } from "lib/constants";
 import { Task } from "components/home/TaskItem";
 import { PATHS } from "router/paths";
+import { ArrowLeftIcon } from "components/ui/SvgIcons.tsx";
 
 export default function Edit() {
     const { taskId } = useParams();
@@ -29,6 +30,13 @@ export default function Edit() {
                 <MainContainer className="flex-col bg-white min-h-screen pb-[3rem]">
                     <PageTitle title="Edit Task" />
                     <Form textareaRows={20} isEditPage />
+                    <Link
+                        to={PATHS().home}
+                        className="mt-[2rem] flex flex-row items-center gap-2"
+                    >
+                        <ArrowLeftIcon className="w-5 h-5" />
+                        Go back
+                    </Link>
                 </MainContainer>
             </TasksContextProvider>
         </PageTransition>

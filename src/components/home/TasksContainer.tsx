@@ -30,7 +30,8 @@ export default function TasksContainer() {
                     <div
                         className={cs(
                             "620:grid-cols-1 620:gap-2",
-                            "w-full grid grid-cols-2 gap-4",
+                            "400:grid-cols-2 400:gap-4",
+                            "w-full grid grid-cols-1 gap-3",
                         )}
                     >
                         {aboveSmallTablet && (

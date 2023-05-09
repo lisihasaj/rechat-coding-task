@@ -54,12 +54,7 @@ export default function TaskItem(props: Props) {
                     "w-full flex flex-row gap-3 items-center",
                 )}
             >
-                <div
-                    className={cs(
-                        "620:w-full 620:flex 620:justify-center",
-                        "w-fit",
-                    )}
-                >
+                <div className={cs("620:flex 620:justify-center", "w-full")}>
                     <TaskStatus status={props.status as Status} />
                 </div>
                 <div
