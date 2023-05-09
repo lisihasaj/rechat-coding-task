@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { StringExtension as String } from "lib/extensions/string.extension.ts";
 import cs from "classnames";
-import { useFormContext } from "lib/context/FormContext.tsx";
+import { useTasksContext } from "lib/context/TasksContext.tsx";
 import InputErrorElement from "components/ui/InputErrorElement.tsx";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function TextInput(props: Props) {
-    const { values, setValues, errors, clearError } = useFormContext();
+    const { values, setValues, errors, clearError } = useTasksContext();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         clearError(props.name); // Clear error when user starts typing

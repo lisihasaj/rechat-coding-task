@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import cs from "classnames";
 import { useOutsideClick } from "lib/hooks/useOutsideClick.tsx";
-import { useFormContext } from "lib/context/FormContext.tsx";
+import { useTasksContext } from "lib/context/TasksContext.tsx";
 import InputErrorElement from "components/ui/InputErrorElement.tsx";
 
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 export default function SelectInput(props: Props) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const ref = useRef<HTMLDivElement | null>(null);
-    const { values, setValues, errors, clearError } = useFormContext();
+    const { values, setValues, errors, clearError } = useTasksContext();
 
     const hasValue = values[props.name] !== undefined;
 

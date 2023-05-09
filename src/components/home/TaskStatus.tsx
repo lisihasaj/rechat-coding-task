@@ -1,10 +1,6 @@
-export type Status =
-    | "Todo"
-    | "inProgress"
-    | "Blocked"
-    | "InQA"
-    | "Done"
-    | "Deployed";
+import { STATUS_TYPES } from "lib/constants.ts";
+
+export type Status = keyof typeof STATUS_TYPES;
 
 interface Props {
     status: Status;
