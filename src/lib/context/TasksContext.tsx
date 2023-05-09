@@ -9,8 +9,8 @@ import {
 import { STATUS_TYPES, TASKS } from "lib/constants";
 import { Task } from "components/home/TaskItem";
 import { useParams } from "react-router-dom";
-import { StorageExtension as Storage } from "lib/extensions/storage.extension.ts";
-import { ArrayExtension as Array } from "lib/extensions/array.extension.ts";
+import { StorageExtension as Storage } from "lib/extensions/storage.extension";
+import { ArrayExtension as Array } from "lib/extensions/array.extension";
 
 type Obj = { [key: string]: string | undefined } | {};
 

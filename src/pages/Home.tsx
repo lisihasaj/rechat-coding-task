@@ -1,9 +1,9 @@
-import { TasksContextProvider } from "lib/context/TasksContext.tsx";
+import { TasksContextProvider } from "lib/context/TasksContext";
 import MainContainer from "components/wrappers/MainContainer";
-import PageTitle from "components/ui/PageTitle.tsx";
-import TasksContainer from "components/home/TasksContainer.tsx";
+import PageTitle from "components/ui/PageTitle";
+import TasksContainer from "components/home/TasksContainer";
 import PageTransition from "components/wrappers/PageTransition";
-import Form from "components/Form.tsx";
+import Form from "components/Form";
 
 export default function Home() {
     return (

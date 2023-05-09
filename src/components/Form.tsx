@@ -1,11 +1,13 @@
-import { EditIcon, PlusIcon } from "components/ui/SvgIcons.tsx";
-import { useTasksContext } from "lib/context/TasksContext.tsx";
-import TextInput from "components/ui/TextInput.tsx";
-import Textarea from "components/ui/Textarea.tsx";
-import Button from "components/ui/Button.tsx";
-import SelectInput from "components/ui/SelectInput.tsx";
+import { EditIcon, PlusIcon } from "components/ui/SvgIcons";
+import { useTasksContext } from "lib/context/TasksContext";
+import TextInput from "components/ui/TextInput";
+import Textarea from "components/ui/Textarea";
+import Button from "components/ui/Button";
+import SelectInput from "components/ui/SelectInput";
 import { useParams } from "react-router-dom";
-import { STATUS_TYPES } from "lib/constants.ts";
+import { STATUS_TYPES, TASKS } from "lib/constants";
+import { StorageExtension } from "lib/extensions/storage.extension.ts";
+import { Task } from "components/home/TaskItem.tsx";
 
 interface Props {
     textareaRows?: number;
@@ -16,12 +18,44 @@ export default function Form(props: Props) {
     const { isDirty, resetFields, addTask, editTask } = useTasksContext();
     const { taskId } = useParams();
 
+    const currentStatus = StorageExtension.get(TASKS)?.find(
+        (t: Task) => t.id === taskId,
+    )?.status;
+
     const statusOptions = [
-        { value: STATUS_TYPES.Todo, label: STATUS_TYPES.Todo },
-        { value: STATUS_TYPES.InProgress, label: STATUS_TYPES.InProgress },
-        { value: STATUS_TYPES.Blocked, label: STATUS_TYPES.Blocked },
-        { value: STATUS_TYPES.InQA, label: STATUS_TYPES.InQA },
-        { value: STATUS_TYPES.Done, label: STATUS_TYPES.Done },
+        {
+            value: STATUS_TYPES.Todo,
+            label: STATUS_TYPES.Todo,
+            isActive:
+                !currentStatus ||
+                currentStatus === STATUS_TYPES.Blocked ||
+                currentStatus === STATUS_TYPES.InQA,
+        },
+        {
+            value: STATUS_TYPES.InProgress,
+            label: STATUS_TYPES.InProgress,
+            isActive: currentStatus === STATUS_TYPES.Todo,
+        },
+        {
+            value: STATUS_TYPES.Blocked,
+            label: STATUS_TYPES.Blocked,
+            isActive: currentStatus === STATUS_TYPES.InProgress,
+        },
+        {
+            value: STATUS_TYPES.InQA,
+            label: STATUS_TYPES.InQA,
+            isActive: currentStatus === STATUS_TYPES.InProgress,
+        },
+        {
+            value: STATUS_TYPES.Done,
+            label: STATUS_TYPES.Done,
+            isActive: currentStatus === STATUS_TYPES.InQA,
+        },
+        {
+            value: STATUS_TYPES.Deployed,
+            label: STATUS_TYPES.Deployed,
+            isActive: currentStatus === STATUS_TYPES.Done,
+        },
     ];
 
     return (

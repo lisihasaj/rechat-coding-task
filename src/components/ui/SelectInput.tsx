@@ -1,18 +1,21 @@
 import { useRef, useState } from "react";
 import cs from "classnames";
-import { useOutsideClick } from "lib/hooks/useOutsideClick.tsx";
-import { useTasksContext } from "lib/context/TasksContext.tsx";
-import InputErrorElement from "components/ui/InputErrorElement.tsx";
+import { useOutsideClick } from "lib/hooks/useOutsideClick";
+import { useTasksContext } from "lib/context/TasksContext";
+import InputErrorElement from "components/ui/InputErrorElement";
+
+export type Option = {
+    label: string;
+    value: string;
+    isActive?: boolean;
+};
 
 interface Props {
     className?: string;
     name: string;
     placeholder?: string;
     disabled?: boolean;
-    options?: {
-        label: string;
-        value: string;
-    }[];
+    options?: Option[];
 }
 
 export default function SelectInput(props: Props) {
@@ -67,20 +70,28 @@ export default function SelectInput(props: Props) {
                 />
             </button>
             {isOpen && (
-                <ul className="w-full h-full bg-primary rounded-md shadow-md z-10 py-[0.5rem]">
+                <div className="w-full h-full bg-primary rounded-md shadow-md z-10 py-[0.5rem] flex flex-col">
                     {props.options ? (
                         props.options.map((option, index) => (
-                            <li
+                            <button
                                 key={index}
+                                type="button"
                                 onClick={() => handleSelect(option.value)}
+                                disabled={
+                                    !option.isActive ||
+                                    option.value === values[props.name]
+                                }
                                 className={cs(
-                                    "w-full px-[1rem] py-[0.5rem] text-base text-gray-500 hover:text-brand-dark",
-                                    option.value === values[props.name] &&
-                                        "text-brand-dark",
+                                    "w-full px-[1rem] py-[0.5rem] text-base text-start",
+                                    option.value === values[props.name]
+                                        ? "text-brand-dark"
+                                        : option.isActive
+                                        ? "text-black hover:text-brand-dark"
+                                        : "text-gray-400",
                                 )}
                             >
                                 {option.label}
-                            </li>
+                            </button>
                         ))
                     ) : (
                         <li
@@ -90,7 +101,7 @@ export default function SelectInput(props: Props) {
                             No options provided.
                         </li>
                     )}
-                </ul>
+                </div>
             )}
         </div>
     );

@@ -1,14 +1,14 @@
 import MainContainer from "components/wrappers/MainContainer";
-import PageTitle from "components/ui/PageTitle.tsx";
+import PageTitle from "components/ui/PageTitle";
 import PageTransition from "components/wrappers/PageTransition";
-import Form from "components/Form.tsx";
-import { TasksContextProvider } from "lib/context/TasksContext.tsx";
+import Form from "components/Form";
+import { TasksContextProvider } from "lib/context/TasksContext";
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { StorageExtension } from "lib/extensions/storage.extension.ts";
-import { TASKS } from "lib/constants.ts";
-import { Task } from "components/home/TaskItem.tsx";
-import { PATHS } from "router/paths.ts";
+import { StorageExtension } from "lib/extensions/storage.extension";
+import { TASKS } from "lib/constants";
+import { Task } from "components/home/TaskItem";
+import { PATHS } from "router/paths";
 
 export default function Edit() {
     const { taskId } = useParams();

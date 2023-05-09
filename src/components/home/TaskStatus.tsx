@@ -1,4 +1,4 @@
-import { STATUS_TYPES } from "lib/constants.ts";
+import { STATUS_TYPES } from "lib/constants";
 
 export type Status = keyof typeof STATUS_TYPES;
 

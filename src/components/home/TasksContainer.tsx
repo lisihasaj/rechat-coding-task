@@ -3,7 +3,7 @@ import MainContainer from "components/wrappers/MainContainer";
 import TaskItem from "components/home/TaskItem";
 import cs from "classnames";
 import { Task } from "components/home/TaskItem";
-import { useTasksContext } from "lib/context/TasksContext.tsx";
+import { useTasksContext } from "lib/context/TasksContext";
 
 export default function TasksContainer() {
     const { tasks } = useTasksContext();

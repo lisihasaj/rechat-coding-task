@@ -1,8 +1,8 @@
-import TaskStatus, { Status } from "components/home/TaskStatus.tsx";
-import { DeleteIcon, EditIcon } from "components/ui/SvgIcons.tsx";
+import TaskStatus, { Status } from "components/home/TaskStatus";
+import { DeleteIcon, EditIcon } from "components/ui/SvgIcons";
 import { Link } from "react-router-dom";
-import { PATHS } from "router/paths.ts";
-import { useTasksContext } from "lib/context/TasksContext.tsx";
+import { PATHS } from "router/paths";
+import { useTasksContext } from "lib/context/TasksContext";
 
 interface Props {
     id: string;
