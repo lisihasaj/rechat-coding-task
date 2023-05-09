@@ -1,5 +1,5 @@
-import { useMetaTitle } from "lib/hooks/useMetaTitle.tsx";
-import Routes from "router/Routes.tsx";
+import { useMetaTitle } from "lib/hooks/useMetaTitle";
+import Routes from "router/Routes";
 
 export default function App() {
     useMetaTitle();

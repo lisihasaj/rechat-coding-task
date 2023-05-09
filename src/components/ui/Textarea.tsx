@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
 import cs from "classnames";
-import { StringExtension as String } from "lib/extensions/string.extension.ts";
-import { useTasksContext } from "lib/context/TasksContext.tsx";
-import InputErrorElement from "components/ui/InputErrorElement.tsx";
+import { StringExtension as String } from "lib/extensions/string.extension";
+import { useTasksContext } from "lib/context/TasksContext";
+import InputErrorElement from "components/ui/InputErrorElement";
 
 interface Props {
     className?: string;

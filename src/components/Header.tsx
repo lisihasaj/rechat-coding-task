@@ -1,5 +1,5 @@
-import MainContainer from "components/wrappers/MainContainer.tsx";
-import { PATHS } from "router/paths.ts";
+import MainContainer from "components/wrappers/MainContainer";
+import { PATHS } from "router/paths";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
