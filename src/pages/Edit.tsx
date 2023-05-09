@@ -15,6 +15,7 @@ export default function Edit() {
     const { taskId } = useParams();
     const navigate = useNavigate();
 
+    // Redirect to 404 if task doesn't exist
     useEffect(() => {
         const task = StorageExtension.get(TASKS)?.find(
             (t: Task) => t.id === taskId,
