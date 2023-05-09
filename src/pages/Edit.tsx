@@ -9,7 +9,7 @@ import { StorageExtension } from "lib/extensions/storage.extension";
 import { TASKS } from "lib/constants";
 import { Task } from "components/home/TaskItem";
 import { PATHS } from "router/paths";
-import { ArrowLeftIcon } from "components/ui/SvgIcons.tsx";
+import { ArrowLeftIcon } from "components/ui/SvgIcons";
 
 export default function Edit() {
     const { taskId } = useParams();
