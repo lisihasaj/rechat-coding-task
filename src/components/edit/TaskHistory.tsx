@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { Task, TaskHistoryItem } from "components/home/TaskItem.tsx";
-import HistoryItem from "components/edit/HistoryItem.tsx";
-import { useTasksContext } from "lib/context/TasksContext.tsx";
+import { Task, TaskHistoryItem } from "components/home/TaskItem";
+import HistoryItem from "components/edit/HistoryItem";
+import { useTasksContext } from "lib/context/TasksContext";
 
 export default function TaskHistory() {
     const { taskId } = useParams();

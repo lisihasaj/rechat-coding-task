@@ -1,7 +1,7 @@
 import PageTransition from "components/wrappers/PageTransition";
 import MainContainer from "components/wrappers/MainContainer";
 import { Link } from "react-router-dom";
-import { PATHS } from "router/paths.ts";
+import { PATHS } from "router/paths";
 import { ArrowLeftIcon } from "components/ui/SvgIcons";
 
 export default function NotFound() {

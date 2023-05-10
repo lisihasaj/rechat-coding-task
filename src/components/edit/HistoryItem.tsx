@@ -1,6 +1,6 @@
-import { Status } from "components/home/TaskStatus.tsx";
+import { Status } from "components/home/TaskStatus";
 import cs from "classnames";
-import { DateExtension } from "lib/extensions/date.extension.ts";
+import { DateExtension } from "lib/extensions/date.extension";
 
 interface Props {
     index: number;

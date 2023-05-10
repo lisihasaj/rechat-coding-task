@@ -6,7 +6,7 @@ import Button from "components/ui/Button";
 import SelectInput from "components/ui/SelectInput";
 import { useParams } from "react-router-dom";
 import { STATUS_TYPES, TASKS } from "lib/constants";
-import { StorageExtension } from "lib/extensions/storage.extension.ts";
+import { StorageExtension } from "lib/extensions/storage.extension";
 import { Task } from "components/home/TaskItem";
 
 interface Props {

@@ -10,7 +10,7 @@ import { TASKS } from "lib/constants";
 import { Task } from "components/home/TaskItem";
 import { PATHS } from "router/paths";
 import { ArrowLeftIcon } from "components/ui/SvgIcons";
-import TaskHistory from "components/edit/TaskHistory.tsx";
+import TaskHistory from "components/edit/TaskHistory";
 
 export default function Edit() {
     const { taskId } = useParams();
