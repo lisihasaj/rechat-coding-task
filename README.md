@@ -104,6 +104,3 @@ For styling is used tailwind with classnames library for easier classnames manag
 
 ### Data fetching and storage
 For data storing and data fetching client local storage has been configured and used. NOTE: This is not production ready solution, but for this task it is a sufficient solution to demonstrate the frontend functionality.
-
-### Testing
-For testing is used React Testing Library with Jest. Tests are written for all components and hooks.
