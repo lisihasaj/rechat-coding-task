@@ -10,6 +10,7 @@ import { TASKS } from "lib/constants";
 import { Task } from "components/home/TaskItem";
 import { PATHS } from "router/paths";
 import { ArrowLeftIcon } from "components/ui/SvgIcons";
+import TaskHistory from "components/edit/TaskHistory.tsx";
 
 export default function Edit() {
     const { taskId } = useParams();
@@ -38,6 +39,7 @@ export default function Edit() {
                         <ArrowLeftIcon className="w-5 h-5" />
                         Go back
                     </Link>
+                    <TaskHistory />
                 </MainContainer>
             </TasksContextProvider>
         </PageTransition>

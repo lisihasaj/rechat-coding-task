@@ -17,7 +17,11 @@ type Obj = { [key: string]: string | undefined } | {};
 
 // Initial state props
 interface TasksContextState {
-    values: Obj;
+    values: {
+        title?: string;
+        description?: string;
+        status?: string;
+    };
     errors: Obj;
     tasks: Task[];
 }
@@ -55,7 +59,7 @@ const reducer = (state: TasksContextState, action: TasksContextActions) => {
                 values: {
                     ...state.values,
                     ...payload,
-                } as Obj,
+                },
             };
         case "set_field_error":
             return {
@@ -175,6 +179,13 @@ export function TasksContextProvider(props: PropsWithChildren) {
             const newTask = {
                 id: String(Date.now()),
                 status: STATUS_TYPES.Todo,
+                history: [
+                    {
+                        createdAt: new Date().toISOString(),
+                        status: STATUS_TYPES.Todo,
+                        ...state.values,
+                    },
+                ],
                 ...state.values,
             };
 
@@ -197,9 +208,22 @@ export function TasksContextProvider(props: PropsWithChildren) {
         if (emptyFields(fields).length > 0) {
             setErrors(emptyFields(fields));
         } else {
+            const targetTaskHistory = storedTasks.find(
+                (t: Task) => t.id === taskId,
+            ).history;
+
             const updatedTasks = Array.updateItemById(storedTasks, {
                 id: taskId,
                 ...state.values,
+                history: [
+                    ...targetTaskHistory,
+                    {
+                        createdAt: new Date().toISOString(),
+                        description: state.values.description,
+                        status: state.values.status,
+                        title: state.values.title,
+                    },
+                ],
             });
 
             Storage.set(TASKS, updatedTasks);

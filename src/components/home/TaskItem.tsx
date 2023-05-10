@@ -13,11 +13,20 @@ interface Props {
     status: Status;
 }
 
+export type TaskHistoryItem = {
+    title: string;
+    description: string;
+    status: Status;
+    createdAt: string;
+};
+
 export type Task = {
     id: string;
     title: string;
     description: string;
     status: Status;
+    createdAt: string;
+    history?: TaskHistoryItem[];
 };
 
 export default function TaskItem(props: Props) {
