@@ -1,3 +1,8 @@
+/*
+A class with a static method to calculate the distance between two dates or a date and the current time.
+The result is returned in human-readable format (e.g. "2 days ago").
+* */
+
 type GetDifferenceTimeTypes = number | string | Date;
 
 export class DateExtension {
